@@ -6,17 +6,15 @@ public class Addition {
 	
 	public static void main(String[] args)
 	  {
-	     String firstNumber = JOptionPane.showInputDialog("Masukkan Panjang Sisi");
-	     String secondNumber = JOptionPane.showInputDialog("Masukkan Tinggi");
+	     String firstNumber = JOptionPane.showInputDialog("Masukkan Radius");
 	     
-	     int sisi = Integer.parseInt(firstNumber);
-	     int tinggi = Integer.parseInt(secondNumber);
+	     double radius = Integer.parseInt(firstNumber);
 	     
-	     int luas = sisi * tinggi / 2;
-	     int keliling = 3*sisi;
+	     double luas = 3.14 * radius * radius;
+	     double keliling = 2* 3.14 * radius;
 	     
-	     JOptionPane.showMessageDialog(null, "Luas Segitiga Sama Sisi adalah: " + luas, "Luas Segitiga Sama sisi", JOptionPane.PLAIN_MESSAGE);
-	     JOptionPane.showMessageDialog(null, "Keliling Segitiga Sama Sisi adalah: " + keliling, "Keliling Segitiga Sama sisi", JOptionPane.PLAIN_MESSAGE);
+	     JOptionPane.showMessageDialog(null, "Luas Lingkaran adalah: " + luas, "Luas Lingkaran", JOptionPane.PLAIN_MESSAGE);
+	     JOptionPane.showMessageDialog(null, "Keliling Lingkaran adalah: " + keliling, "Keliling Lingkaran", JOptionPane.PLAIN_MESSAGE);
 	     
 	  }
 }
