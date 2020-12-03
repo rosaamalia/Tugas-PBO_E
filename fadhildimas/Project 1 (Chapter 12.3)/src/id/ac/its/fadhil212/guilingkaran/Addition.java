@@ -1,4 +1,4 @@
-package id.ac.its.fadhil212.guisegitigasamasisi;
+package id.ac.its.fadhil212.guilingkaran;
 
 import javax.swing.JOptionPane;
 
