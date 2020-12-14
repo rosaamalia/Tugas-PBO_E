@@ -717,7 +717,8 @@ public class CollisionEx extends JFrame {
     }
 }
 ```
-dan ini adalah Main class dari program
+dan ini adalah Diagram Kelas dari program
+![Diagram Kelas](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Collision%20Detection/Images/Diagram%20Kelas.jpg)
 
 Tampilan In-game
 
