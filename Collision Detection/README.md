@@ -721,7 +721,7 @@ dan ini adalah Main class dari program
 
 Tampilan In-game
 
-![In Game](https://github.com/rosaamalia/Tugas-PBO_E/tree/main/Collision%20Detection/images/ingame.png)
+![In Game](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Collision%20Detection/Images/ingame.png)
 
 Tampilan Game Over
 
