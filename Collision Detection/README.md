@@ -1,3 +1,4 @@
+# Collision Detection
 Disini akan menjelaskan tentang Program Collision di game Java 2D
 
 Banyak game perlu menangani tabrakan, terutama game arcade. Sederhananya, kita perlu mendeteksi ketika dua objek bertabrakan di layar.
@@ -720,11 +721,11 @@ dan ini adalah Main class dari program
 
 Tampilan In-game
 
-https://github.com/rosaamalia/Tugas-PBO_E/tree/main/Collision%20Detection/images/ingame.png
+![In Game]https://github.com/rosaamalia/Tugas-PBO_E/tree/main/Collision%20Detection/images/ingame.png
 
 Tampilan Game Over
 
-https://github.com/rosaamalia/Tugas-PBO_E/tree/main/Collision%20Detection/images/gameover.png
+![Game Over]https://github.com/rosaamalia/Tugas-PBO_E/tree/main/Collision%20Detection/images/gameover.png
 
 
 
