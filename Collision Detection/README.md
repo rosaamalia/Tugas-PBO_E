@@ -725,7 +725,7 @@ Tampilan In-game
 
 Tampilan Game Over
 
-![Game Over](https://github.com/rosaamalia/Tugas-PBO_E/tree/main/Collision%20Detection/images/gameover.png)
+![Game Over](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Collision%20Detection/Images/gameover.png)
 
 
 
