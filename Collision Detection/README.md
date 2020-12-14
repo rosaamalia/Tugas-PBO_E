@@ -721,11 +721,11 @@ dan ini adalah Main class dari program
 
 Tampilan In-game
 
-![In Game]images/ingame.png
+![In Game](https://github.com/rosaamalia/Tugas-PBO_E/tree/main/Collision%20Detection/images/ingame.png)
 
 Tampilan Game Over
 
-![Game Over]images/gameover.png
+![Game Over](https://github.com/rosaamalia/Tugas-PBO_E/tree/main/Collision%20Detection/images/gameover.png)
 
 
 
