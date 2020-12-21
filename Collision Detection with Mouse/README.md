@@ -90,4 +90,4 @@ Pada metode `buttonPressed` ,Apabila kursor atau mouse mengarahkan keluar dari B
 ![Class Diagram](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Collision%20Detection%20with%20Mouse/Images/Diagram%20Kelas.jpg)
 
 # Video Jalan program
-[Link Video Jalan Program]()
+[Link Video Jalan Program](https://youtu.be/rZxX_M9i5b8)
