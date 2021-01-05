@@ -1,4 +1,4 @@
-# Tugas-PBO_E
+# Final Project
 ## Ping Pong Game
 
 Pada project ini kami membuat game Ping Pong menggunakan Java
