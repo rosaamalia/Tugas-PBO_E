@@ -1,9 +1,8 @@
 package finalprojectPBO;
 
-
-
 import java.awt.*;
 import java.util.Random;
+
  
 public class Ball {
     public int x,y,lebar = 40, panjang =40;
@@ -11,11 +10,12 @@ public class Ball {
     public Random random;
     private Pong pong;
     public int amountOfHits;
+    
  
     /**
      * contruktor untuk membuat bola saat
      * game mau dimulai
-     * @param pong permintaan pong membuat bola
+     *  pong permintaan pong membuat bola
      */
     public Ball(Pong pong){
         this.pong = pong;
@@ -24,6 +24,7 @@ public class Ball {
     }
  
     public void update(Paddle paddle1, Paddle paddle2){
+   
         int speed = 8;
         this.x += motionX * speed;
         this.y += motionY * speed;
@@ -40,31 +41,37 @@ public class Ball {
                 this.motionY = -random.nextInt(5);
                 this.y = pong.panjang - panjang;
                 if (motionY == 0) motionY = -1;
+                
             }
         }
         if(checkCollision(paddle1) == 1){
             this.motionX = 1 + (amountOfHits/5);
             this.motionY = -2 + random.nextInt(5);
             if(motionY == 0) motionY =1;
- 
+           
             amountOfHits++;
+            
         }
         else if(checkCollision(paddle2) == 1){
             this.motionX = -1 - (amountOfHits/5);
             this.motionY = -2 + random.nextInt(5);
             if(motionY == 0) motionY = 1;
- 
+        
             amountOfHits++;
         }
  
         if (checkCollision(paddle1) == 2){
+        	
             paddle2.score++;
             spawn();
         }
         else if (checkCollision(paddle2) == 2){
+        	
             paddle1.score++;
             spawn();
         }
+        
+   
     }
  
     /**
@@ -85,18 +92,36 @@ public class Ball {
  
     public  int checkCollision(Paddle paddle){
         if (this.x < paddle.x + paddle.lebar && this.x + lebar > paddle.x
-                && this.y < paddle.y + paddle.panjang && this.y + panjang > paddle.y) return 1; // memantul
+                && this.y < paddle.y + paddle.panjang && this.y + panjang > paddle.y) {
+	        	Sound.PING.play();
+	        	return 1;// memantul
+        	} 
         else if ((paddle.x > x && paddle.paddleNumber ==1)
-                || (paddle.x < x - lebar && paddle.paddleNumber ==2)) return 2; //skor
+                || (paddle.x < x - lebar && paddle.paddleNumber ==2)) {
+        	Sound.SCORE.play();
+        	return 2; //skor
+        }
         return  0;//nothing
     }
  
     /**
      *  Method untuk membuat tampilan bola
-     * @param g
      */
-    public void  render(Graphics g){
-        g.setColor(Color.YELLOW );
+    
+   public void  render(Graphics g){
+	   Random r = new Random();
+       g.setColor(new Color(r.nextInt()));
+       // g.setColor(Color.YELLOW );
         g.fillOval(x,y,lebar,panjang);
     }
+    
+ /**  public void render(Graphics g) {
+	    if (checkCollision){
+	        Random r = new Random();
+	        g.setColor(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
+	        checkCollision = false;
+	    }
+	    g.fillOval(x,y,lebar,panjang);
+	} **/
+    
 }
