@@ -30,7 +30,6 @@ public class Pong implements ActionListener, KeyListener{
     public JFrame jframe;
   
 	private TimeCounter timeCounter;
-	private TimeHs timehs;
 	
 	private Score writeScore;
 	 
@@ -42,7 +41,6 @@ public class Pong implements ActionListener, KeyListener{
         random = new Random();
         jframe = new JFrame("PONG PING");
         renderer = new Renderer();
-        timehs = new TimeHs();
         writeScore = new Score();
  
         jframe.setSize(lebar + 15, panjang + 35);
