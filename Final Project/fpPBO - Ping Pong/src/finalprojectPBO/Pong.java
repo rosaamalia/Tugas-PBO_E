@@ -2,8 +2,6 @@ package finalprojectPBO;
 
 import javax.swing.*;
 
-
-
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.*;
@@ -14,6 +12,7 @@ import java.awt.event.KeyListener;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
+import java.util.ArrayList;
 
  
 public class Pong implements ActionListener, KeyListener{
@@ -30,8 +29,10 @@ public class Pong implements ActionListener, KeyListener{
     public Random random;
     public JFrame jframe;
   
-	 private TimeCounter timeCounter;
-	 private TimeHs timehs;
+	private TimeCounter timeCounter;
+	private TimeHs timehs;
+	
+	private Score writeScore;
 	 
     /**
      * contructor
@@ -42,6 +43,7 @@ public class Pong implements ActionListener, KeyListener{
         jframe = new JFrame("PONG PING");
         renderer = new Renderer();
         timehs = new TimeHs();
+        writeScore = new Score();
  
         jframe.setSize(lebar + 15, panjang + 35);
         jframe.setVisible(true);
@@ -123,7 +125,7 @@ public class Pong implements ActionListener, KeyListener{
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
  
         //tampilan menu
-        if(gameStatus ==0){
+        if(gameStatus == 0){
         	
         	timeCounter = new TimeCounter(0, 0, 0);
         	
@@ -146,6 +148,7 @@ public class Pong implements ActionListener, KeyListener{
             }
             
         }
+        
         if(selectingDifficulty){
         
             g.setColor(Color.ORANGE);
@@ -197,32 +200,39 @@ public class Pong implements ActionListener, KeyListener{
         }
  
         //maka ini saat menang
-        if(gameStatus ==3){
+        if(gameStatus == 3){
         	timeCounter.stop();
-        
+        	
             g.setColor(Color.MAGENTA);
             g.setFont(new Font("Arial", 1, 75));
             g.drawString("PONG PING",lebar/2 - 230, 200);
        
-            if(bot && playerWon == 2) g.drawString("BOT MENANG!", lebar/2-283, 300);
-            else g.drawString("PLAYER " + playerWon + " MENANG!", lebar/2-390, 330);
-            
- 
-            g.setColor(Color.CYAN);
-            g.setFont(new Font("Arial", 1, 25));
-            g.drawString("TEKAN ESC UNTUK KEMBALI KE MAIN MENU", lebar/2 - 300, panjang/2 + 100);
-            
-         
-            
-            String ts;
-            ts = "Time: " + timeCounter.result();
-            g.drawString(ts, lebar/3 - 300, panjang/2 + 50);
-         
-        	
-            
-          //  timehs.getData();
-            //timehs.renderGame(g);
-          
+            if(bot && playerWon == 2) {
+            	g.drawString("BOT MENANG!", lebar/2-283, 300);
+            	
+            	g.setColor(Color.CYAN);
+                g.setFont(new Font("Arial", 1, 25));
+            	g.drawString("TEKAN ESC UNTUK KEMBALI KE MAIN MENU", lebar/2 - 300, panjang/2 + 100);
+            }
+            else {
+            	g.drawString("PLAYER " + playerWon + " MENANG!", lebar/2-390, 330);
+            	
+            	g.setColor(Color.CYAN);
+                g.setFont(new Font("Arial", 1, 25));
+            	String ts;
+                ts = "Time: " + timeCounter.result();
+                g.drawString(ts, lebar/3 - 300, panjang/2 + 50);
+                
+                g.drawString("TEKAN ESC UNTUK KEMBALI KE MAIN MENU", lebar/2 - 300, panjang/2 + 100);
+                
+                //baca score sebelumnya yg sudah disimpan jika ada
+//                ArrayList<String> scoreSebelumnya = writeScore.readFile("data/HighScore.txt");
+                
+                //simpan waktu bermain sebagai score
+                writeScore.writeFile("data/HighScore.txt", timeCounter.result() + "\n");
+                
+                //return;
+            }
         }
         
      // ketika credit
@@ -237,7 +247,6 @@ public class Pong implements ActionListener, KeyListener{
             g.setFont(new Font("Arial", 1, 20));
             g.drawString("TEKAN ESC UNTUK KEMBALI KE MENU", lebar/ 3 , panjang/2 + 130);
            
-			   
         }
         
     }
@@ -251,6 +260,7 @@ public class Pong implements ActionListener, KeyListener{
  
     public static void main(String [] args){
         pong = new Pong();
+        
     }
  
     @Override
@@ -268,7 +278,7 @@ public class Pong implements ActionListener, KeyListener{
                 else botDifficulty = 0;
                
  
-            } else if(gameStatus ==0) scoreLimit ++;
+            } else if(gameStatus == 0) scoreLimit ++;
         }
         else if(id == KeyEvent.VK_LEFT){
         	 Sound.PING.play();
