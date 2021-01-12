@@ -9,7 +9,9 @@ public class Ball {
     public int motionX, motionY;
     public Random random;
     private Pong pong;
+    private Pong id;
     public int amountOfHits;
+    
     
  
     /**
@@ -108,20 +110,21 @@ public class Ball {
      *  Method untuk membuat tampilan bola
      */
     
-   public void  render(Graphics g){
-	   Random r = new Random();
-       g.setColor(new Color(r.nextInt()));
-       // g.setColor(Color.YELLOW );
-        g.fillOval(x,y,lebar,panjang);
-    }
-    
- /**  public void render(Graphics g) {
-	    if (checkCollision){
-	        Random r = new Random();
-	        g.setColor(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
-	        checkCollision = false;
-	    }
-	    g.fillOval(x,y,lebar,panjang);
-	} **/
-    
+   public void render(Graphics g) {
+		switch(pong.warna) {
+		default:
+			 g.setColor(Color.YELLOW );
+		     g.fillOval(x,y,lebar,panjang);
+			break;
+		case 1:
+			 g.setColor(Color.WHITE );
+		     g.fillOval(x,y,lebar,panjang);
+			break;
+		case 2:
+			 g.setColor(Color.GREEN );
+		     g.fillOval(x,y,lebar,panjang);
+			break;
+		}
+     
+}
 }
