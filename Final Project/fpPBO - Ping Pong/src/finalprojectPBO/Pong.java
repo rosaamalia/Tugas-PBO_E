@@ -152,7 +152,7 @@ public class Pong implements ActionListener, KeyListener{
         if(selectingDifficulty){
         
             g.setColor(Color.ORANGE);
-            String string = botDifficulty == 0 ? "EZ" : (botDifficulty == 1 ? "MEDIUM" : "SUSAH NJIR");
+            String string = botDifficulty == 0 ? "MUDAH" : (botDifficulty == 1 ? "MEDIUM" : "SULIT");
  
             g.setFont(new Font("Arial", 1, 30));
             if(botDifficulty == 0 )
@@ -184,7 +184,20 @@ public class Pong implements ActionListener, KeyListener{
             // penunjuk waktu
             String ts;
             ts = "Time: " + timeCounter.result();
+            g.setFont(new Font("Arial", 1, 12));
             g.drawString(ts, lebar-150, 50);
+            
+            //High Score (waktu tercepat)
+            String highScoreSebelumnya = writeScore.readFile("data/HighScore.txt");
+            g.setFont(new Font("Arial", 1, 18));
+            
+            if(highScoreSebelumnya == null)
+            {
+            	highScoreSebelumnya = "0:0:0";
+            	g.drawString("High Score: " + highScoreSebelumnya, lebar-330, 50);
+            } else {
+            	g.drawString("High Score: " + highScoreSebelumnya, lebar-330, 50);
+            }
  
             player1.render(g);
             player2.render(g);
@@ -209,29 +222,50 @@ public class Pong implements ActionListener, KeyListener{
        
             if(bot && playerWon == 2) {
             	g.drawString("BOT MENANG!", lebar/2-283, 300);
-            	
-            	g.setColor(Color.CYAN);
-                g.setFont(new Font("Arial", 1, 25));
-            	g.drawString("TEKAN ESC UNTUK KEMBALI KE MAIN MENU", lebar/2 - 300, panjang/2 + 100);
             }
             else {
             	g.drawString("PLAYER " + playerWon + " MENANG!", lebar/2-390, 330);
-            	
-            	g.setColor(Color.CYAN);
-                g.setFont(new Font("Arial", 1, 25));
-            	String ts;
-                ts = "Time: " + timeCounter.result();
-                g.drawString(ts, lebar/3 - 300, panjang/2 + 50);
-                
-                g.drawString("TEKAN ESC UNTUK KEMBALI KE MAIN MENU", lebar/2 - 300, panjang/2 + 100);
-                
-                //baca score sebelumnya yg sudah disimpan jika ada
-//                ArrayList<String> scoreSebelumnya = writeScore.readFile("data/HighScore.txt");
-                
-                //simpan waktu bermain sebagai score
+            }
+            
+            g.setColor(Color.CYAN);
+            g.setFont(new Font("Arial", 1, 25));
+        	String ts;
+            ts = "Time: " + timeCounter.result();
+            g.drawString(ts, lebar/3 - 300, panjang/2 + 50);
+            
+            g.drawString("TEKAN ESC UNTUK KEMBALI KE MAIN MENU", lebar/2 - 300, panjang/2 + 100);
+            
+            //membaca high score permainan sebelumnya
+            String highScoreSebelumnya = writeScore.readFile("data/HighScore.txt");
+            
+            //jika tidak ada rekor waktu sebelumnya
+            if(highScoreSebelumnya == null)
+            {
+            	writeScore.writeFile("data/HighScore.txt", timeCounter.result() + "\n");
+            }
+            
+            //mendapatkan masing-masing satuan waktu (jam, menit, detik)
+            String [] words = highScoreSebelumnya. split(":", 3);
+            
+            int jam = Integer.parseInt(words[0]);
+            int menit = Integer.parseInt(words[1]);
+            int detik = Integer.parseInt(words[2]);
+            
+            //membandingkan waktu dengan high score sebelumnya
+            if(jam > timeCounter.hours)
+            {
+            	//simpan waktu bermain sebagai score
                 writeScore.writeFile("data/HighScore.txt", timeCounter.result() + "\n");
-                
-                //return;
+            }
+            else if (menit > timeCounter.min)
+            {
+            	//simpan waktu bermain sebagai score
+                writeScore.writeFile("data/HighScore.txt", timeCounter.result() + "\n");
+            }
+            else if (detik > timeCounter.sec)
+            {
+            	//simpan waktu bermain sebagai score
+                writeScore.writeFile("data/HighScore.txt", timeCounter.result() + "\n");
             }
         }
         
@@ -268,12 +302,8 @@ public class Pong implements ActionListener, KeyListener{
             g.drawString(" SCORE LIMIT: " + scoreLimit + "     (up/down) ",lebar/2-219, panjang/2 + 40);
             
             g.setFont(new Font("Arial", 1, 20));
-            g.drawString("TEKAN ESC UNTUK KEMBALI KE MENU", lebar/ 3 , panjang/2 + 130);  
-            
-        
+            g.drawString("TEKAN ESC UNTUK KEMBALI KE MENU", lebar/ 3 , panjang/2 + 130);   
         }
-        
-        
     }
  
     

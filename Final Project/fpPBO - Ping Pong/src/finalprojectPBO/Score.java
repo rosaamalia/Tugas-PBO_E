@@ -15,8 +15,6 @@ public class Score {
 	{
 		File inputFile;
 		BufferedReader inputReader;
-//		StringBuilder sb = new StringBuilder();
-//		ArrayList<String> fileText = new ArrayList<String>();
 		String fileText = "";
 		
 		try {
@@ -46,17 +44,6 @@ public class Score {
 			
 			//masukkan string Score
 			outputWriter.write(Score);
-			
-//			int size = Score.size();
-//			
-//			for (int i=0;i<size;i++)
-//			{
-//	            String str = Score.get(i).toString();
-//	            
-//	            outputWriter.write(str);
-//	            if(i < size-1) //This prevent creating a blank like at the end of the file**
-//	                outputWriter.write(str);
-//	        }
 			
 			outputWriter.close();
 		} catch (Exception e) {
