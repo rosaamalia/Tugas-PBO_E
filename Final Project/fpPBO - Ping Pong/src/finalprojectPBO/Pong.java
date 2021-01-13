@@ -38,7 +38,7 @@ public class Pong implements ActionListener, KeyListener{
     public Pong(){
         Timer timer = new Timer(20,this);
         random = new Random();
-        jframe = new JFrame("PONG PING");
+        jframe = new JFrame("PING PONG");
         renderer = new Renderer();
         writeScore = new Score();
  
