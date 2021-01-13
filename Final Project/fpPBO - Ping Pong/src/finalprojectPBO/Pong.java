@@ -14,7 +14,6 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ArrayList;
 
- 
 public class Pong implements ActionListener, KeyListener{
  
     public static Pong pong;
@@ -26,12 +25,11 @@ public class Pong implements ActionListener, KeyListener{
     public boolean w, s, up, down;
     public int gameStatus = 0, scoreLimit = 3, playerWon; //0 = Menu, 1 = Paused, 2 = Playing, 3 = Over, 4=credits ,5=option
     public int botDifficulty, botMoves, botCooldown = 0;
-    public int warna=1;
+    public int warna = 1;
     public Random random;
     public JFrame jframe;
   
 	private TimeCounter timeCounter;
-	
 	private Score writeScore;
 	 
     /**
@@ -144,7 +142,6 @@ public class Pong implements ActionListener, KeyListener{
                 g.drawString("TEKAN SHIFT UNTUK BERMAIN DENGAN BOT", lebar/2 - 360, panjang/2 + 25);
                 g.drawString("TEKAN C UNTUK Credits", lebar/2 - 200, panjang/2 + 75);
                 g.drawString("TEKAN O UNTUK Option", lebar/2 - 200, panjang/2 + 125);
-         //       g.drawString("<< SCORE LIMIT: " + warna + " >>",lebar/2-176, panjang/2 + 120);
             }
             
         }

@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 public class TimeCounter implements ActionListener {
 
     private Timer clock;
-    private int hours = 0;
-    private int min = 0;
-    private int sec = 0;
+    public int hours = 0;
+    public int min = 0;
+    public int sec = 0;
 
     public TimeCounter(int hours, int min, int sec) {
         this.hours = hours;

@@ -3,7 +3,6 @@ package finalprojectPBO;
 import java.awt.*;
 import java.util.Random;
 
- 
 public class Ball {
     public int x,y,lebar = 40, panjang =40;
     public int motionX, motionY;
@@ -12,8 +11,6 @@ public class Ball {
     private Pong id;
     public int amountOfHits;
     
-    
- 
     /**
      * contruktor untuk membuat bola saat
      * game mau dimulai
