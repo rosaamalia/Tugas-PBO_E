@@ -401,7 +401,37 @@ public class TimeCounter implements ActionListener {
 Sebagai Class yang berfungsi untuk menampiklan waktu saat bermain , Format penampilan adalah Jam:Menit: Detik dimana perhitungan waktu dimulai saat ```clock.start()``` dan berhenti saat fungsi ```stop()``` dipanggil.
 
 ## Fitur-Fitur Utama Pada Aplikasi
+- Menu/Halaman Utama
 
+![Menu](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Final%20Project/Gambar/01_Menu.png)
+
+
+- Pilihan level
+
+Level permainan yang dapat dipilih saat bermain dengan komputer (1 player)
+
+![Level](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Final%20Project/Gambar/02_Level.png)
+
+
+- Pilihan Warna Bola dan Batas Score
+
+Pilihan warna bola dan batas score yang disediakan dapat dipilih sebelum bermain (dengan 2 player atau pun 1 player)
+
+![Warna Bola dan Score](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Final%20Project/Gambar/03_Pilihan%20Warna%20Bola.png)
+
+
+- Waktu Terbaik
+
+High score dengan sistem waktu terbaik yang terus dapat tercatat meski sudah mengakhiri permainan
+
+![Permainan Berlangsung](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Final%20Project/Gambar/05_Permainan%20Berlangsung.png)
+![Pause](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Final%20Project/Gambar/06_Permainan%20Pause.png)
+![Game Over](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Final%20Project/Gambar/07_Permainan%20Selesai.png)
+
+
+- Credit
+
+![Credit](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Final%20Project/Gambar/04_Credit.png)
 
 ## Perubahan Yang Dilakukan dan Referensi
 
@@ -416,5 +446,8 @@ Sebagai Class yang berfungsi untuk menampiklan waktu saat bermain , Format penam
 - Penambahan Fitur Credits untuk menampilkan nama pembuat aplikasi
 
 - Penambahan Fitur Best Time sebagai High score untuk waktu terbaik
+
+## Referensi
+[Referensi](https://successfulthomas.blogspot.com/2020/12/belajar-java-ceria-9.html)
 
 ## Link Youtube Demo
