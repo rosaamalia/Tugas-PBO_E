@@ -7,6 +7,7 @@ Nama Kelompok:
 3. Rosa Amalia - 05111940000106
 
 ## Class Diagram
+![Kelas Diagram](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Final%20Project/Kelas%20Diagram/Kelas%20Diagram%20-%20FP%20PBO%20PING%20PONG.jpg)
 
 ## Penjelasan Class
 **Pong.java** 
