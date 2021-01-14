@@ -201,3 +201,19 @@ public void render(Graphics g) {
 }
 ```
 Berfungsi untuk membuat tampilan bola serta warna bola tersebut, pilihan warna bola tergantung dari nilai "warna" yang terletak di class pong
+
+**Paddle.java**
+
+**Renderer.java**
+
+**Score.java**
+
+**Sound.java**
+
+**TimeCounter.java**
+
+## Fitur-Fitur Utama Pada Aplikasi
+
+## Perubahan Yang Dilakukan dan Referensi
+
+## Link Youtube Demo
