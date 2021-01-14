@@ -284,4 +284,16 @@ Sebagai Class yang berfungsi untuk menampiklan waktu saat bermain , Format penam
 
 ## Perubahan Yang Dilakukan dan Referensi
 
+- Penambahan Fitur TimeCounter Untuk Menghitung waktu yang telah berjalan (Elapsed Time)
+
+- Penambahan Fitur Sound untuk menambahkan suara pada saat game/aplikasi berjalan
+
+- Penambahan Fitur agar dapat memilih untuk mengganti warna bola
+
+- Merubah Warna Paddle sehingga warna paddle tiap player berbeda
+
+- Penambahan Fitur Credits untuk menampilkan nama pembuat aplikasi
+
+- Penambahan Fitur Best Time sebagai High score untuk waktu terbaik
+
 ## Link Youtube Demo
