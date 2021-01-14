@@ -209,6 +209,15 @@ Berfungsi untuk membuat tampilan bola serta warna bola tersebut, pilihan warna b
 **Score.java**
 
 **Sound.java**
+```
+public class Sound {
+	public static final AudioClip END = Applet.newAudioClip(Sound.class.getResource("end.wav"));
+	public static final AudioClip PING = Applet.newAudioClip(Sound.class.getResource("ping.wav"));
+	public static final AudioClip SCORE = Applet.newAudioClip(Sound.class.getResource("scoreup.wav"));
+
+}
+```
+Berfungsi untuk Menambahkan Audio/Sound pada program. Terdapa 3 sound yang tersedia: END (pada saat game selesai) , PING ( pada saat bola mengenai paddle / pada saat mengatur warna maupun skor di option) dan SCORE (pada saat mencetak skor)
 
 **TimeCounter.java**
 
