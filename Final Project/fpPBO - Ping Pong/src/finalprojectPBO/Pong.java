@@ -191,11 +191,11 @@ public class Pong implements ActionListener, KeyListener{
             if(highScoreSebelumnya == null)
             {
             	highScoreSebelumnya = "0:0:0";
-            	g.drawString("High Score: " + highScoreSebelumnya, lebar-330, 50);
+            	g.drawString("Best Time: " + highScoreSebelumnya, lebar-330, 50);
             } else {
-            	g.drawString("High Score: " + highScoreSebelumnya, lebar-330, 50);
+            	g.drawString("Best Time: " + highScoreSebelumnya, lebar-330, 50);
             }
- 
+
             player1.render(g);
             player2.render(g);
             ball.render(g);
@@ -227,13 +227,14 @@ public class Pong implements ActionListener, KeyListener{
             g.setColor(Color.CYAN);
             g.setFont(new Font("Arial", 1, 25));
         	String ts;
-            ts = "Time: " + timeCounter.result();
-            g.drawString(ts, lebar/3 - 300, panjang/2 + 50);
+            ts = "Your Time: " + timeCounter.result();
+            g.drawString(ts, lebar/2 - 300, panjang/2 + 50);
             
-            g.drawString("TEKAN ESC UNTUK KEMBALI KE MAIN MENU", lebar/2 - 300, panjang/2 + 100);
+            g.drawString("TEKAN ESC UNTUK KEMBALI KE MAIN MENU", lebar/2 - 300, panjang/2 + 130);
             
             //membaca high score permainan sebelumnya
             String highScoreSebelumnya = writeScore.readFile("data/HighScore.txt");
+            g.drawString("Best Time: " + highScoreSebelumnya, lebar/2+60, panjang/2+50);
             
             //jika tidak ada rekor waktu sebelumnya
             if(highScoreSebelumnya == null)
@@ -323,11 +324,17 @@ public class Pong implements ActionListener, KeyListener{
         else if(id == KeyEvent.VK_S) s = true;
         else if(id == KeyEvent.VK_UP) {
         	up = true;
-        	if(gameStatus == 5) scoreLimit ++;
+        	if(gameStatus == 5) {
+        		Sound.PING.play();
+        		scoreLimit ++;
+        	}
         }
         else if(id == KeyEvent.VK_DOWN) {
         	down = true;
-        	if ( gameStatus == 5 && scoreLimit>1) scoreLimit--;
+        	if ( gameStatus == 5 && scoreLimit>1) {
+        		Sound.PING.play();
+        		scoreLimit--;
+        	}
         }
         else if(id == KeyEvent.VK_RIGHT){
         	 Sound.PING.play();

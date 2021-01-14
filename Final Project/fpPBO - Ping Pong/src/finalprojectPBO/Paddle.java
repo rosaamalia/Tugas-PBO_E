@@ -25,8 +25,14 @@ public class Paddle {
     }
  
     public void render(Graphics g){
+    	if(paddleNumber==1) {
+    		g.setColor(Color.RED );
+            g.fillRect(x,y,lebar,panjang);
+    	}
+    	else {
         g.setColor(Color.BLUE );
         g.fillRect(x,y,lebar,panjang);
+    	}
     }
  
     /**
