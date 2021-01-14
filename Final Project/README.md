@@ -283,6 +283,52 @@ Berfungsi untuk mengrender dan sebagai dasar untuk pembuatan panel
 
 **Score.java**
 
+Kelas ```Score``` berfungsi untuk memanajemen waktu terbaik sebagai high score di permainan.
+```
+public String readFile(String filePath)
+	{
+		File inputFile;
+		BufferedReader inputReader;
+		String fileText = "";
+		
+		try {
+			inputFile = new File(filePath);
+			
+			inputReader = new BufferedReader(new FileReader(inputFile));
+			fileText = inputReader.readLine();
+			String line;
+			
+			inputReader.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return fileText;
+	}
+```
+Fungsi ```readFile``` untuk membaca waktu terbaik yang sudah pernah tercatat di permainan sebelumnya di file ```HighScore.txt``` dan mengoper isi dari file (waktu terbaik yang pernah dicatat). Jika belum dan file kosong, maka nilai ```null``` yang akan dioper.
+
+```
+public void writeFile(String filePath, String Score)
+	{
+		File outputFile;
+		BufferedWriter outputWriter;
+		
+		try {
+			outputFile = new File(filePath);
+			outputWriter = new BufferedWriter(new FileWriter(outputFile));
+			
+			//masukkan string Score
+			outputWriter.write(Score);
+			
+			outputWriter.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+```
+Fungsi ```writeFile``` untuk menyimpan waktu terbaik dan mencatatnya di file ```HighScore.txt``` dan akan digunakan untuk permainan selanjutnya. Jadi, meskipun permainan sudah selesai (Exit), waktu terbaik akan tetap tercatat dan dapat digunakan untuk permainan selanjutnya.
+
 **Sound.java**
 ```
 public class Sound {
