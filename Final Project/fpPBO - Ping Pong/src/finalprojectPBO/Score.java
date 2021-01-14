@@ -20,7 +20,6 @@ public class Score {
 			
 			inputReader = new BufferedReader(new FileReader(inputFile));
 			fileText = inputReader.readLine();
-			String line;
 			
 			inputReader.close();
 		} catch (Exception e) {

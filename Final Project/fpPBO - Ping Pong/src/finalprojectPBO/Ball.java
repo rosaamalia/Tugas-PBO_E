@@ -8,7 +8,6 @@ public class Ball {
     public int motionX, motionY;
     public Random random;
     private Pong pong;
-    private Pong id;
     public int amountOfHits;
     
     /**

@@ -1,18 +1,12 @@
 package finalprojectPBO;
 
 import javax.swing.*;
-
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Random;
-import java.util.ArrayList;
 
 public class Pong implements ActionListener, KeyListener{
  
@@ -81,7 +75,7 @@ public class Pong implements ActionListener, KeyListener{
  
  
         if(!bot){
-            //membaca pergerakan padlle2
+            //membaca pergerakan paddle2
             if(up) player2.move(true);
             if(down) player2.move(false);
  
@@ -128,7 +122,7 @@ public class Pong implements ActionListener, KeyListener{
         	
             g.setColor(Color.MAGENTA);
             g.setFont(new Font("Arial", 1, 75));
-            g.drawString("PONG PING",lebar/2 - 230, 200);
+            g.drawString("PING PONG",lebar/2 - 230, 200);
             
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial", 1, 30));
@@ -153,11 +147,11 @@ public class Pong implements ActionListener, KeyListener{
  
             g.setFont(new Font("Arial", 1, 30));
             if(botDifficulty == 0 )
-                g.drawString("<< BOT DIFFICULTY: " + string + " >>",lebar/2 - 219, panjang/2 - 25);
+                g.drawString("<< BOT DIFFICULTY: " + string + " >>",lebar/2 - 257, panjang/2 - 25);
             else if(botDifficulty == 1)
                 g.drawString("<< BOT DIFFICULTY: " + string + " >>",lebar/2 - 257, panjang/2 - 25);
             else if(botDifficulty == 2)
-                g.drawString("<< BOT DIFFICULTY: " + string + " >>",lebar/2 - 294, panjang/2 - 25);
+                g.drawString("<< BOT DIFFICULTY: " + string + " >>",lebar/2 - 257, panjang/2 - 25);
             g.drawString("PRESS SPACE TO PLAY/PAUSE", lebar/2 - 260 , panjang/2 + 25);
         }
  

@@ -1,7 +1,5 @@
 package finalprojectPBO;
 
-
-
 import javax.swing.*;
 import java.awt.*;
  
