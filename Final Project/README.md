@@ -13,6 +13,167 @@ Nama Kelompok:
 **Pong.java** 
 
 Sebagai class utama(main class)yang berfungsi mengendalikan objek yang telah dibuat
+```
+public class Pong implements ActionListener, KeyListener{
+ 
+    public static Pong pong;
+    public int lebar =  1280, panjang = 720 ; //lebar-panjang panel
+    public Renderer renderer;
+    public Paddle player1, player2;
+    public Ball ball;
+    public boolean bot = false, selectingDifficulty;
+    public boolean w, s, up, down;
+    public int gameStatus = 0, scoreLimit = 3, playerWon; //0 = Menu, 1 = Paused, 2 = Playing, 3 = Over, 4=credits ,5=option
+    public int botDifficulty, botMoves, botCooldown = 0;
+    public int warna = 1;
+    public Random random;
+    public JFrame jframe;
+  
+	private TimeCounter timeCounter;
+	private Score writeScore;
+```
+Code diatas berfungsi sebagai deklarasi variabel/objek yang ada. ` public int lebar , panjang` bertujuan untuk mengatur panjang dan lebar panel . `gameStatus` adalah kondisi status game pada aplikasi , dimana pada kondisi default berada pada kondisi 0 yaitu main menu.
+
+Sedangkan `scoreLimit` adalah batas skor yang dibutuhkan untuk menang . selain itu terdapat pula kondisi-kondisi lain yang ditetapkan pada saat default seperti fungsi `warna`,`botCooldown` dan sebagainya.
+
+```
+public Pong(){
+        Timer timer = new Timer(20,this);
+        random = new Random();
+        jframe = new JFrame("PING PONG");
+        renderer = new Renderer();
+        writeScore = new Score();
+ 
+        jframe.setSize(lebar + 15, panjang + 35);
+        jframe.setVisible(true);
+        jframe.setDefaultCloseOperation(jframe.EXIT_ON_CLOSE);
+        jframe.add(renderer);
+        jframe.addKeyListener(this);
+        
+        timer.start();
+    }
+```
+Berfungsi Sebagai Contructor , `jframe = new JFrame` berfungsi untuk memberikan nama "PING PONG" pada panel diatas , lalu `renderer` yang berfungsi untuk merender dan line dibawahnya mengatur size dan visiblility pada panel
+
+```
+public void start(){
+        gameStatus =2;
+        player1 = new Paddle(this, 1);
+        player2 = new Paddle(this, 2);
+        ball = new Ball(this);
+    }
+```
+pada saat `gamestatus=2` yaitu saat bermain, maka game akan menampilkan 2 player serta bolanya.
+
+```
+public void update(){
+        //cek skor setiap pemain
+        if (player1.score >= scoreLimit){
+        	Sound.END.play();
+            playerWon =1;
+            gameStatus = 3;
+        }
+	 if(player2.score >= scoreLimit){
+        	Sound.END.play();
+            playerWon = 2;
+            gameStatus = 3;
+        }
+```
+program akan mengecek melalui `update()` pada saat permainan apakah skor telah melebihi `scoreLimit` dimana apabila terlewati maka pemain tersebut akan menang (`gameStatus=3`)
+
+```
+//pergerakan paddle1
+        if(w) player1.move(true);
+        if(s) player1.move(false);
+ 
+ 
+        if(!bot){
+            //membaca pergerakan paddle2
+            if(up) player2.move(true);
+            if(down) player2.move(false);
+ 
+        } else {
+ 
+            if(botCooldown > 0){
+                botCooldown--;
+                if (botCooldown == 0) botMoves=0;
+            }
+ 
+            if(botMoves <10){
+                if(player2.y + player2.panjang/2 < ball.y){
+                    player2.move(false);
+                    botMoves++;
+                }
+                if(player2.y + player2.panjang/2 > ball.y){
+                    player2.move(true);
+                    botMoves++;
+                }
+ 
+                if(botDifficulty == 0) botCooldown = 25;
+                if(botDifficulty == 1) botCooldown = 15;
+                if(botDifficulty == 2) botCooldown = 8;
+            }
+        }
+        ball.update(player1,player2);
+    }
+```
+
+Mengatur mengenai pergerakan paddle baik paddle 1 maupun 2 , disini terlihat bahwa melalui `botCooldown` maka pergerakan paddle yang digerakan komputer akan dapat diatur tingkat responsivitasnya tergantung kesulitannya (`botDifficulty`) 
+
+```
+public void render(Graphics2D g){
+ 
+        //untuk background
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0, lebar, panjang);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+```
+Disini `render(Graphics2D g)` berfungsi untuk mengerender , dalam hal ini pada code diatas untuk background. Dimana warna background diatur warna hitam
+
+```
+//tampilan menu
+        if(gameStatus == 0){
+        	
+        	timeCounter = new TimeCounter(0, 0, 0);
+        	
+            g.setColor(Color.MAGENTA);
+            g.setFont(new Font("Arial", 1, 75));
+            g.drawString("PING PONG",lebar/2 - 230, 200);
+            
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Arial", 1, 30));
+            g.drawString("____________________________", lebar/2 - 250, panjang/2 - 125);
+ 
+            if(!selectingDifficulty){
+            	 
+                g.setColor(Color.PINK);
+                g.setFont(new Font("Arial", 1, 30));
+                g.drawString("TEKAN SPACE UNTUK BERMAIN/PAUSE", lebar/2 - 320, panjang/2 - 25);
+                g.drawString("TEKAN SHIFT UNTUK BERMAIN DENGAN BOT", lebar/2 - 360, panjang/2 + 25);
+                g.drawString("TEKAN C UNTUK Credits", lebar/2 - 200, panjang/2 + 75);
+                g.drawString("TEKAN O UNTUK Option", lebar/2 - 200, panjang/2 + 125);
+            }
+            
+        }
+        
+        if(selectingDifficulty){
+        
+            g.setColor(Color.ORANGE);
+            String string = botDifficulty == 0 ? "MUDAH" : (botDifficulty == 1 ? "MEDIUM" : "SULIT");
+ 
+            g.setFont(new Font("Arial", 1, 30));
+            if(botDifficulty == 0 )
+                g.drawString("<< BOT DIFFICULTY: " + string + " >>",lebar/2 - 257, panjang/2 - 25);
+            else if(botDifficulty == 1)
+                g.drawString("<< BOT DIFFICULTY: " + string + " >>",lebar/2 - 257, panjang/2 - 25);
+            else if(botDifficulty == 2)
+                g.drawString("<< BOT DIFFICULTY: " + string + " >>",lebar/2 - 257, panjang/2 - 25);
+            g.drawString("PRESS SPACE TO PLAY/PAUSE", lebar/2 - 260 , panjang/2 + 25);
+        }
+```
+Sedangkan untuk code diatas mengatur untuk tampilan menu utama yang ditunjukan pada `gamestatus==0`. Pada saat memasuki menu utama penghitung waktu `timeCounter` akan direset dari 0. Lalu program akan menampilkan judul aplikasi. 
+
+Karena pada kondisi deafult `selectingDifficulty` bernilai false maka ia akan menampilkan opsi pilihan bermain, credits maupun option . Ketika kita memilih bermain dengan bot maka secara otomatis akan memicu `SelectingDifficulty` bernilai benar sehingga menampilkan pilihan tingkat kesulitan bot.
 
 **Ball.java**
 ```
