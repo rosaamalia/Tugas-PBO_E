@@ -204,9 +204,82 @@ public void render(Graphics g) {
 Berfungsi untuk membuat tampilan bola serta warna bola tersebut, pilihan warna bola tergantung dari nilai "warna" yang terletak di class pong
 
 **Paddle.java**
+```
+public class Paddle {
+ 
+    public int paddleNumber, score;
+    public int x,y,lebar =50, panjang= 250;
+ ```
+ deklarasi variabel/objek dan mengatur ukuran dari paddle
+ 
+ ```
+  public Paddle(Pong pong, int paddleNumber){
+        this.paddleNumber = paddleNumber;
+        if(paddleNumber ==1){
+            this.x =0;
+        }
+        if(paddleNumber ==2){
+            this.x = pong.lebar -lebar;
+        }
+ 
+        this.y = pong.panjang/2 - this.panjang/2;
+    }
+```
+Menginisiasi/constructor paddle, menentukan jumlah pemain (```paddleNumber```) dan posisi dari paddle (```this.x``` , ```this.y```)
+
+```
+ public void render(Graphics g){
+    	if(paddleNumber==1) {
+    		g.setColor(Color.RED );
+            g.fillRect(x,y,lebar,panjang);
+    	}
+    	else {
+        g.setColor(Color.BLUE );
+        g.fillRect(x,y,lebar,panjang);
+    	}
+    }
+```
+Menrender dari paddle sekaligus memberikan warna pada tabble ( Merah dan Biru)
+
+```
+public void move(Boolean up){
+        int speed = 20;
+ 
+        if(up){
+            if (y-speed > 0){
+                y-=speed;
+            }
+            else{
+                y=0;
+            }
+        }
+        else{
+            if(y + panjang + speed < Pong.pong.panjang){
+                y+= speed;
+            }
+            else {
+                y= Pong.pong.panjang - panjang;
+            }
+        }
+        }
+}
+```
+sebagai method yang mengatur pergerakan paddle
+```if(up)``` berfungsi apabila kita menekan tombol up paddle akan naik keatas (pojok atas bernilai 0) dan apabila y=0 ia tidak bisa lagi keatas jika tidak menekan up maka yang akan jalan ialah else dibawah
 
 **Renderer.java**
-
+```
+public class Renderer extends JPanel {
+    private static  final long serialVersionUID = 1L;
+ 
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        Pong.pong.render((Graphics2D) g);
+    }
+}
+```
+Berfungsi untuk mengrender dan sebagai dasar untuk pembuatan panel
 
 **Score.java**
 
