@@ -401,6 +401,9 @@ public class TimeCounter implements ActionListener {
 Sebagai Class yang berfungsi untuk menampiklan waktu saat bermain , Format penampilan adalah Jam:Menit: Detik dimana perhitungan waktu dimulai saat ```clock.start()``` dan berhenti saat fungsi ```stop()``` dipanggil.
 
 ## Fitur-Fitur Utama Pada Aplikasi
+![mainmenu](https://github.com/rosaamalia/Tugas-PBO_E/blob/main/Final%20Project/foto/Mainmenu.png)
+
+menu utama
 
 ## Perubahan Yang Dilakukan dan Referensi
 
