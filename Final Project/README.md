@@ -331,6 +331,112 @@ if(gameStatus == 5){
 ```
 Kode di atas menampilkan pilihan untuk warna bola dan batas(limit) score untuk permainan sebelum mulai.
 
+```
+ @Override
+    public void actionPerformed(ActionEvent e){
+        if(gameStatus ==2) update();
+        renderer.repaint();
+    }
+```
+Method di atas berfungsi untuk mereset tampilan papan permainan dengan mengubah `gameStatus` menjadi 2.
+
+```
+@Override
+    public void keyPressed(KeyEvent e){
+        int id = e.getKeyCode();
+ 
+        if(id == KeyEvent.VK_W) w = true;
+        else if(id == KeyEvent.VK_S) s = true;
+        else if(id == KeyEvent.VK_UP) {
+        	up = true;
+        	if(gameStatus == 5) {
+        		Sound.PING.play();
+        		scoreLimit ++;
+        	}
+        }
+        else if(id == KeyEvent.VK_DOWN) {
+        	down = true;
+        	if ( gameStatus == 5 && scoreLimit>1) {
+        		Sound.PING.play();
+        		scoreLimit--;
+        	}
+        }
+        else if(id == KeyEvent.VK_RIGHT){
+        	 Sound.PING.play();
+            if(selectingDifficulty){
+                if(botDifficulty < 2) botDifficulty++;
+                else botDifficulty = 0;
+               
+ 
+            } else if(gameStatus == 5) {
+            	 if(warna < 2) warna++;
+                 else warna = 0;            }
+        }
+        else if(id == KeyEvent.VK_LEFT){
+        	 Sound.PING.play();
+            if (selectingDifficulty) {
+                if(botDifficulty > 0) botDifficulty --;
+                else  botDifficulty = 2;
+              
+            }
+            else if ( gameStatus == 5 ) {
+            	 if(warna > 0) warna --;
+                 else  warna = 2;
+            }
+        }
+        else if(id == KeyEvent.VK_ESCAPE && (gameStatus == 2 || gameStatus == 3 || gameStatus==4 || gameStatus==5)) 
+        {
+        	gameStatus = 0;
+        }
+        else if (id == KeyEvent.VK_SHIFT && gameStatus == 0 ){
+            bot = true;
+            selectingDifficulty = true;
+        }
+        else if (id == KeyEvent.VK_SPACE){
+            if(gameStatus == 0 || gameStatus == 3){
+                if(!selectingDifficulty) bot = false;
+                else  selectingDifficulty = false;
+ 
+                start();
+            }
+            else if(gameStatus == 1) {
+            	gameStatus =2;
+            	 timeCounter.start();}
+            
+            else if(gameStatus == 2) {
+            	gameStatus =1;
+            	timeCounter.stop();
+            }
+        
+        }
+        else if(id == KeyEvent.VK_C
+                && (gameStatus == 0 || gameStatus == 3)) gameStatus = 4;
+        else if(id == KeyEvent.VK_O
+                && (gameStatus == 0 || gameStatus == 3)) gameStatus = 5;
+    }
+    
+    @Override
+    public void keyReleased (KeyEvent e){
+        int id = e.getKeyCode();
+ 
+        if(id == KeyEvent.VK_W) w =false;
+        else if (id == KeyEvent.VK_S) s = false;
+        else if (id == KeyEvent.VK_UP) up = false;
+        else if (id == KeyEvent.VK_DOWN) down = false;
+    }
+ 
+    @Override
+    public void keyTyped (KeyEvent e){}
+```
+Kode di atas berfungsi untuk menerima input dari keyboard untuk menentukan `gameStatus` yang memengaruhi tampilan layar dan jalannya permainan.
+
+```
+public static void main(String [] args){
+        pong = new Pong();  
+    }
+```
+Fungsi main untuk membuat dan menjalankan objek `Pong` untuk memulai permainan.
+
 **Ball.java**
 ```
 public int x,y,lebar = 40, panjang =40;
