@@ -175,6 +175,122 @@ Sedangkan untuk code diatas mengatur untuk tampilan menu utama yang ditunjukan p
 
 Karena pada kondisi deafult `selectingDifficulty` bernilai false maka ia akan menampilkan opsi pilihan bermain, credits maupun option . Ketika kita memilih bermain dengan bot maka secara otomatis akan memicu `SelectingDifficulty` bernilai benar sehingga menampilkan pilihan tingkat kesulitan bot.
 
+```
+	if(gameStatus == 1 || gameStatus == 2){
+        	
+            g.setColor(Color.GREEN);
+ 
+            g.setStroke(new BasicStroke(5f));
+            g.drawLine(lebar/2, 0,lebar/2,panjang);
+ 
+            g.setStroke(new BasicStroke(2f));
+            g.drawOval(lebar/2 -125, panjang /2-120, 250,250);
+ 
+            //untuk skor
+            g.setFont(new Font("Arial", 1, 50));
+            g.drawString(String.valueOf(player1.score), lebar/2 - 90, 100);
+            g.drawString(String.valueOf(player2.score), lebar/2 + 65, 100);
+            g.setFont(new Font("Arial", 1, 10));
+            
+            // penunjuk waktu
+            String ts;
+            ts = "Time: " + timeCounter.result();
+            g.setFont(new Font("Arial", 1, 12));
+            g.drawString(ts, lebar-150, 50);
+            
+            //High Score (waktu tercepat)
+            String highScoreSebelumnya = writeScore.readFile("data/HighScore.txt");
+            g.setFont(new Font("Arial", 1, 18));
+            
+            if(highScoreSebelumnya == null)
+            {
+            	highScoreSebelumnya = "0:0:0";
+            	g.drawString("Best Time: " + highScoreSebelumnya, lebar-330, 50);
+            } else {
+            	g.drawString("Best Time: " + highScoreSebelumnya, lebar-330, 50);
+            }
+
+            player1.render(g);
+            player2.render(g);
+            ball.render(g);
+	    
+	    }
+ 
+```
+Method di atas berfungsi untuk membuat arena permainan. Selain paddle dan bola, arena permainan juga menunjukkan skor selama permainan dan waktu terbaik yang pernah dicapai selama permainan. Best time diambil dari `highScoreSebelumnya` yang berasal dari file HighScore.txt. Jika belum ada best time yang tercatat dari permainan sebelumnya, maka best time di arena permainan akan mulai dari `0:0:0`.
+
+```
+        if(gameStatus == 1){
+        
+            g.setColor(Color.RED);
+            g.setFont(new Font("Arial", 1, 50));
+            g.drawString("PAUSE", lebar/2 - 89, panjang/2+20);
+        }
+```
+Method di atas akan berjalan saat `gameStatus = 1` dan berfungsi untuk menjeda permainan.
+
+```
+if(gameStatus == 3){
+        	timeCounter.stop();
+        	
+            g.setColor(Color.MAGENTA);
+            g.setFont(new Font("Arial", 1, 75));
+            g.drawString("PONG PING",lebar/2 - 230, 200);
+       
+            if(bot && playerWon == 2) {
+            	g.drawString("BOT MENANG!", lebar/2-283, 300);
+            }
+            else {
+            	g.drawString("PLAYER " + playerWon + " MENANG!", lebar/2-390, 330);
+            }
+            
+            g.setColor(Color.CYAN);
+            g.setFont(new Font("Arial", 1, 25));
+        	String ts;
+            ts = "Your Time: " + timeCounter.result();
+            g.drawString(ts, lebar/2 - 300, panjang/2 + 50);
+            
+            g.drawString("TEKAN ESC UNTUK KEMBALI KE MAIN MENU", lebar/2 - 300, panjang/2 + 130);
+            
+            //membaca high score permainan sebelumnya
+            String highScoreSebelumnya = writeScore.readFile("data/HighScore.txt");
+            g.drawString("Best Time: " + highScoreSebelumnya, lebar/2+60, panjang/2+50);
+            
+            //jika tidak ada rekor waktu sebelumnya
+            if(highScoreSebelumnya == null)
+            {
+            	writeScore.writeFile("data/HighScore.txt", timeCounter.result() + "\n");
+            }
+            
+            //mendapatkan masing-masing satuan waktu (jam, menit, detik)
+            String [] words = highScoreSebelumnya. split(":", 3);
+            
+            int jam = Integer.parseInt(words[0]);
+            int menit = Integer.parseInt(words[1]);
+            int detik = Integer.parseInt(words[2]);
+            
+            //membandingkan waktu dengan high score sebelumnya
+            if(jam > timeCounter.hours)
+            {
+            	//simpan waktu bermain sebagai score
+                writeScore.writeFile("data/HighScore.txt", timeCounter.result() + "\n");
+            }
+            else if (menit > timeCounter.min)
+            {
+            	//simpan waktu bermain sebagai score
+                writeScore.writeFile("data/HighScore.txt", timeCounter.result() + "\n");
+            }
+            else if (detik > timeCounter.sec)
+            {
+            	//simpan waktu bermain sebagai score
+                writeScore.writeFile("data/HighScore.txt", timeCounter.result() + "\n");
+            }
+        }
+```
+Saat `gameStatus = 3`, limit score sudah terpenuhi dan akan menampilkan tampilan pemenang. Di method ini `timeCounter.stop()` akan berjalan dan `timeCounter` akan berhenti mencatat waktu permainan.
+
+Waktu saat permainan akan dibandingkan dengan waktu yang pernah dicatat sebelumnya di file HighScore.txt. Waktu yang diambil dari file HighScore.txt di variabel `highScoreSebelumnya` displit dan dikonversi menjadi bertipe integer sehingga dapat dibandingkan dengan waktu saat permainan. Jika waktu saat permainan tadi ternyata lebih singkat dari best time waktu yang pernah tercatat, maka waktu tersebut akan dicatat sebagai rekor baru ke file HighScore.txt melalui method `writeScore.writeFile`.
+
 **Ball.java**
 ```
 public int x,y,lebar = 40, panjang =40;
