@@ -227,7 +227,7 @@ Method di atas berfungsi untuk membuat arena permainan. Selain paddle dan bola, 
             g.drawString("PAUSE", lebar/2 - 89, panjang/2+20);
         }
 ```
-Method di atas akan berjalan saat `gameStatus = 1` dan berfungsi untuk menjeda permainan.
+Method di atas akan berjalan saat `gameStatus == 1` dan berfungsi untuk menjeda permainan.
 
 ```
 if(gameStatus == 3){
@@ -287,9 +287,49 @@ if(gameStatus == 3){
             }
         }
 ```
-Saat `gameStatus = 3`, limit score sudah terpenuhi dan akan menampilkan tampilan pemenang. Di method ini `timeCounter.stop()` akan berjalan dan `timeCounter` akan berhenti mencatat waktu permainan.
+Saat `gameStatus == 3`, limit score sudah terpenuhi dan akan menampilkan tampilan pemenang. Di method ini `timeCounter.stop()` akan berjalan dan `timeCounter` akan berhenti mencatat waktu permainan.
 
 Waktu saat permainan akan dibandingkan dengan waktu yang pernah dicatat sebelumnya di file HighScore.txt. Waktu yang diambil dari file HighScore.txt di variabel `highScoreSebelumnya` displit dan dikonversi menjadi bertipe integer sehingga dapat dibandingkan dengan waktu saat permainan. Jika waktu saat permainan tadi ternyata lebih singkat dari best time waktu yang pernah tercatat, maka waktu tersebut akan dicatat sebagai rekor baru ke file HighScore.txt melalui method `writeScore.writeFile`.
+
+```
+if(gameStatus == 4){
+        	
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Arial", 1, 40));
+            g.drawString("CREDIT", lebar/2 - 89, panjang/3+20);
+            g.drawString("Rosa Amalia - 05111940000106", lebar/4 -60, panjang/2 - 25);
+            g.drawString("Rihan Farih Bunyamin - 05111940000165", lebar/4 - 60, panjang/2 + 25);
+            g.drawString("Fadhil Dimas Sucahyo - 05111940000212", lebar/4 -60, panjang/2 + 70);
+            g.setFont(new Font("Arial", 1, 20));
+            g.drawString("TEKAN ESC UNTUK KEMBALI KE MENU", lebar/ 3 , panjang/2 + 130);  
+        }
+```
+Kode di atas menampilkan kredit berisi nama anggota kelompok.
+
+```
+if(gameStatus == 5){
+        	
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Arial", 1, 40));
+            g.drawString("OPTION", lebar/2 - 89, panjang/3+20);
+            
+            String string = warna == 0 ? "KUNING" : (warna == 1 ? "PUTIH" : "HIJAU");
+            
+            g.setFont(new Font("Arial", 1, 30));
+            if(warna == 0 )
+                g.drawString("<< WARNA BOLA: " + string + " >>",lebar/2 - 219, panjang/2 - 25);
+            else if(warna == 1)
+                g.drawString("<< WARNA BOLA: " + string + " >>",lebar/2 - 219, panjang/2 - 25);
+            else if(warna == 2)
+                g.drawString("<< WARNA BOLA: " + string + " >>",lebar/2 - 219, panjang/2 - 25);
+            
+            g.drawString(" SCORE LIMIT: " + scoreLimit + "     (up/down) ",lebar/2-219, panjang/2 + 40);
+            
+            g.setFont(new Font("Arial", 1, 20));
+            g.drawString("TEKAN ESC UNTUK KEMBALI KE MENU", lebar/ 3 , panjang/2 + 130);   
+        }
+```
+Kode di atas menampilkan pilihan untuk warna bola dan batas(limit) score untuk permainan sebelum mulai.
 
 **Ball.java**
 ```
