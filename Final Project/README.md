@@ -874,4 +874,4 @@ High score dengan sistem waktu terbaik yang terus dapat tercatat meski sudah men
 [Referensi](https://successfulthomas.blogspot.com/2020/12/belajar-java-ceria-9.html)
 
 ## Link Youtube Demo
-[Link Youtube](https://youtu.be/dxjNK0GFpr4)
+[Link Youtube](https://youtu.be/bh7uFY5XoVI)
